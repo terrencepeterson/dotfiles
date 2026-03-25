@@ -1,0 +1,44 @@
+[env]
+TERM = "alacritty"
+TERM_EMULATOR = "alacritty"
+
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/blood_moon.toml"
+]
+
+[colors.primary]
+background = "#323232"
+
+[terminal.shell]
+program = "/usr/bin/zsh"
+args = ["-c", "tmux -L alacritty attach || tmux -L alacritty new-session -s main"]
+
+[font]
+size = 14
+offset.y = 15
+glyph_offset.y = 8
+offset.x = 1
+
+[window]
+opacity=0.9
+startup_mode="Fullscreen"
+dynamic_padding=true
+
+[window.padding]
+x=5
+
+[cursor]
+blink_interval=500
+blink_timeout=0
+
+[cursor.style]
+shape="Underline"
+blinking="Always"
+
+[cursor.vi_mode_style]
+shape="Block"
+
+[scrolling]
+history=100000
+multiplier=3
