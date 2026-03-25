@@ -1,0 +1,6 @@
+font_family Adwatia Mono
+font_size 14
+adjust_line_height 18
+
+scrollback_lines 10000
+map ctrl+shift+f11 toggle_fullscreen
