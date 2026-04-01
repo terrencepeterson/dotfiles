@@ -245,3 +245,8 @@ vim.keymap.set("n", "<tab>", function()
         vim.cmd('tabnext')
     end
 end)
+
+vim.keymap.set("n", "<leader>ct", function()
+    vim.cmd('tabonly')
+end)
+
