@@ -97,9 +97,18 @@ local function shouldShowWinBar()
     return not vim.tbl_contains(hideWinBarFileTypes, filetype)
 end
 
+local function isDiffMode()
+    for index, arg in pairs(vim.v.argv) do
+        if arg=='-d' then
+            return true
+        end
+    end
+    return false
+end
+
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
     callback = function()
-        vim.wo.winbar = shouldShowWinBar() and "%{%v:lua.GetWinBar()%}" or ""
+        vim.wo.winbar = (shouldShowWinBar() and not isDiffMode()) and "%{%v:lua.GetWinBar()%}" or ""
         -- cleanPath = filename == cleanPath and "" or cleanPath -- stops file path from showing twice when editing files at project level
     end,
 })
