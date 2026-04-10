@@ -2,6 +2,10 @@
 TERM = "alacritty"
 TERM_EMULATOR = "alacritty"
 
+# force to run with dedicated gpu instead of integrated - testing this out
+__NV_PRIME_RENDER_OFFLOAD = "1"
+__GLX_VENDOR_LIBRARY_NAME = "nvidia"
+
 [general]
 import = [
     "~/.config/alacritty/themes/themes/blood_moon.toml"
