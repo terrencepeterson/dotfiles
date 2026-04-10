@@ -8,7 +8,6 @@ return {
             vim.keymap.set("n", "<leader>gs", ":tab G<CR>", { silent = true})
             vim.keymap.set("n", "<leader>gc", ":tab Git commit<CR>", { silent = true})
             vim.keymap.set("n", "<leader>gl", ":tab Git log<CR>", { silent = true})
-            vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { silent = true})
             vim.keymap.set("n", "<leader>gh", ":tab Git log -- %<CR>", { silent = true})
         end
     },

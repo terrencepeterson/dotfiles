@@ -12,7 +12,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
 -- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>gp", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
@@ -99,7 +99,7 @@ end
 
 local function isDiffMode()
     for index, arg in pairs(vim.v.argv) do
-        if arg=='-d' then
+        if arg == '-d' then
             return true
         end
     end
@@ -127,7 +127,24 @@ local function isTerminalAlacritty()
 end
 
 vim.keymap.set("n", "<leader>z", function()
-    print(isTerminalAlacritty())
+    local wins = vim.api.nvim_list_wins()
+
+    local test = {}
+    for key, winId in pairs(wins) do
+        test.insert(vim.api.nvim_win_get_config(winId))
+        -- print(vim.inspect(vim.api.nvim_win_get_config(winId)))
+        -- local buf = vim.api.nvim_win_get_buf(winId)
+        -- local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+        -- print(vim.inspect(filetype))
+    end
+    print(test)
+    -- print(vim.inspect(test))
+    -- nvim_win_get_config
+    -- local win = vim.api.nvim_get_current_win()
+    -- local buf = vim.api.nvim_win_get_buf(win)
+    -- vim.api.nvim_get_option_value('buftype', { buf = buffer_number })
+    -- local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+    -- print(vim.inspect(wins))
 end)
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
@@ -258,4 +275,3 @@ end)
 vim.keymap.set("n", "<leader>ct", function()
     vim.cmd('tabonly')
 end)
-

@@ -45,6 +45,27 @@ vim.keymap.set('n', '<leader>pf', function()
     })
 end, { desc = 'Telescope find all files' })
 
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+vim.keymap.set('v', '<leader>pf', function()
+    local text = vim.getVisualSelection()
+    builtin.find_files({
+        no_ignore = true,
+        default_text = text
+    })
+end, { desc = 'Telescope find all files' })
+
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files respects .gitignore' })
 
 -- opens recent files and goes to normal mode so can scroll straight away with jk keys
