@@ -1,5 +1,6 @@
 local builtin = require('telescope.builtin')
 local telescope = require('telescope')
+local utils = require('telescope.utils')
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local lga_actions = require('telescope-live-grep-args.actions')
@@ -92,32 +93,8 @@ vim.keymap.set("n", "<leader>ps", function()
 end)
 
 vim.keymap.set('n', '<leader>ds', function()
-    local cwd = vim.fn.getcwd()
-    local dir = vim.fn.expand("%:p:h")
-    dir = dir:gsub("oil://", "")
-
-    -- Normalize to remove trailing slash (if any)
-    if cwd:sub(-1) == "/" then
-        cwd = cwd:sub(1, -2)
-    end
-
-    local relativeDir = dir:gsub(vim.pesc(cwd), "")
-
     telescope.extensions.live_grep_args.live_grep_args({
-        default_text = "--no-ignore -F '' -g **" .. relativeDir .. "/**",
-        attach_mappings = function(_, _)
-            vim.schedule(function()
-                -- Move the cursor inside the single quotes
-                local prompt_bufnr = vim.api.nvim_get_current_buf()
-                local current_line = vim.api.nvim_get_current_line()
-                local cursor_pos = current_line:find("%-F ''")
-
-                if cursor_pos then
-                    vim.api.nvim_win_set_cursor(0, { 1, cursor_pos + 3 })
-                end
-            end)
-            return true
-        end
+        search_dirs = { utils.buffer_dir():gsub("oil://", "") }
     })
 end, { desc = 'Telescope search in current dir' })
 
@@ -134,6 +111,7 @@ end, { desc = 'Telescope find files in current dir' })
 vim.keymap.set('n', '<leader>pi', function()
     builtin.lsp_implementations()
 end)
+
 -- resume last used picker
 vim.keymap.set("n", "<leader>tr", function ()
     builtin.resume({
