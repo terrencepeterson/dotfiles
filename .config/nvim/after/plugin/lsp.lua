@@ -140,7 +140,7 @@ vim.lsp.config('tailwindcss', {
          }
     },
     filetypes = { -- phtml doesn't work here we must listen for php
-        "html", "vue", "css", "scss", "php"
+        "html", "vue", "css", "scss", "php", "blade"
     },
 })
 vim.lsp.enable('tailwindcss')
