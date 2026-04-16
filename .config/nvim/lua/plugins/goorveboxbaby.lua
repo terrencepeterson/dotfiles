@@ -6,7 +6,7 @@ _G.GetWinBar = function()
     cleanPath = filename == cleanPath and "" or cleanPath -- stops file path from showing twice when editing files at project level
     local extension = vim.fn.expand("%:e")
     local devIcon, devIconHighlight = require'nvim-web-devicons'.get_icon(filename, extension, { default = true })
-    return string.format("  %%#%s#%s  %%#WinBarFileName#%s %%#WinBarPath#%s", devIconHighlight, devIcon, filename, cleanPath);
+    return string.format("    %%#%s#%s  %%#WinBarFileName#%s %%#WinBarPath#%s", devIconHighlight, devIcon, filename, cleanPath);
 end
 
 return {
@@ -30,14 +30,15 @@ return {
         -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
         -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-        -- set the current line number to bold yellow
-        vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#564E48', bold=false })
+        -- set the current line number to bold yellow and the rest to the same as comment
+        vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#6E635D', bold=false })
         vim.api.nvim_set_hl(0, 'LineNr', { fg='#EEBD35', bold=true })
-        vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#564E48', bold=false })
+        vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#6E635D', bold=false })
+
+        vim.api.nvim_set_hl(0, '@comment', { fg='#6E635D', bold=false })
 
         -- set tab indent line colour
-        -- vim.api.nvim_set_hl(0, "IblIndent", { fg = "#4a4746" })
-        vim.api.nvim_set_hl(0, "NonText", { fg = "#3b3837" })
+        vim.api.nvim_set_hl(0, "NonText", { fg = "#47423D" })
 
         -- vim.cmd [[highlight StatusLine guibg=#282c34 guifg=#ffffff]]
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "#323232", fg = "#ffffff" })
