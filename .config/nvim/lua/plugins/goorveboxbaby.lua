@@ -38,15 +38,14 @@ return {
         vim.api.nvim_set_hl(0, '@comment', { fg='#6E635D', bold=false })
 
         -- set tab indent line colour
-        vim.api.nvim_set_hl(0, "NonText", { fg = "#47423D" })
+        vim.api.nvim_set_hl(0, "NonText", { fg = "#3D3834" })
 
         -- vim.cmd [[highlight StatusLine guibg=#282c34 guifg=#ffffff]]
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "#323232", fg = "#ffffff" })
         vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#323232", fg = "#ffffff" })
 
-        -- vim.wo.winbar = "%{%v:lua.GetWinBar()%}"
         vim.api.nvim_set_hl(0, "WinBar", { bg = "#3a3a3a", fg = "#ffffff" })
-        -- vim.api.nvim_set_hl(0, "WinBarFileName", { bold = true })
+        vim.api.nvim_set_hl(0, "WinBarFileName", { bold = true })
         vim.api.nvim_set_hl(0, "WinBarPath", { italic = true, fg = "#8a7f78" })
     end
 }
