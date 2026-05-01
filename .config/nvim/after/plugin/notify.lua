@@ -3,6 +3,6 @@ notify.setup({
     background_colour = "#000000",
 })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>md', function()
+vim.keymap.set({ 'n', 'v' }, '<leader>cm', function()
     notify.dismiss()
-end)
+end, { desc = "Clear messages - removes all messages from screen" })
