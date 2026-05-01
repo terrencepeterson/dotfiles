@@ -168,12 +168,12 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 vim.keymap.set("n", "q", vim.cmd.q)
 vim.keymap.set("n", "<leader>w", vim.cmd.w)
 
-vim.keymap.set("n", "<leader>ya", function()
+--[[ vim.keymap.set("n", "<leader>ya", function()
     local dir = vim.fn.expand("%:p")
     local cleanDir = dir:gsub("oil://", "")
     vim.fn.setreg("+", cleanDir)
     vim.notify("Yanked absolute filepath", vim.log.levels.INFO)
-end, { desc = "Copy absolute file path to clipboard" })
+end, { desc = "Copy absolute file path to clipboard" }) ]]
 
 vim.keymap.set("n", "<leader>yf", function()
     vim.fn.setreg("+", vim.fn.expand("%:t"))
