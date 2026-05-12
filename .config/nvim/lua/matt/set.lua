@@ -2,6 +2,10 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.report = 9999 -- stops vim messsaging saying "X fewer lines" when deleting chunks
 
+-- for the search in buffer functionality
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
