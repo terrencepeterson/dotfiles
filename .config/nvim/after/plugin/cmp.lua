@@ -24,6 +24,7 @@ cmp.setup({
     window = {
         completion = {
             border = "rounded",
+            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
         },
         documentation = {
             border = "rounded",
@@ -59,4 +60,3 @@ cmp.event:on(
     'confirm_done',
     cmp_autopairs.on_confirm_done()
 )
-
