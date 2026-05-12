@@ -40,12 +40,6 @@ end
 
 vim.keymap.set("n", "<leader>pd", OpenFolderWithOil, { desc = "Find folder and open in Oil" })
 
-vim.keymap.set('n', '<leader>pf', function()
-    builtin.find_files({
-        no_ignore = true
-    })
-end, { desc = 'Telescope find all files' })
-
 function vim.getVisualSelection()
 	vim.cmd('noau normal! "vy"')
 	local text = vim.fn.getreg('v')
@@ -59,15 +53,35 @@ function vim.getVisualSelection()
 	end
 end
 
-vim.keymap.set('v', '<leader>pf', function()
-    local text = vim.getVisualSelection()
+-- project ignored files
+vim.keymap.set('n', '<leader>pif', function()
     builtin.find_files({
         no_ignore = true,
-        default_text = text
+        prompt_title = 'Find all files'
     })
 end, { desc = 'Telescope find all files' })
 
-vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files respects .gitignore' })
+-- project ignored files
+vim.keymap.set('v', '<leader>pif', function()
+    local text = vim.getVisualSelection()
+    builtin.find_files({
+        no_ignore = true,
+        default_text = text,
+        prompt_title = 'Find all files'
+    })
+end, { desc = 'Telescope find all files (With Selected Text)' })
+
+vim.keymap.set('n', '<leader>pf', function()
+    builtin.find_files({prompt_title = 'Find files (Respects .gitignore)' })
+end, { desc = 'Telescope find files (Respects .gitignore)' })
+
+vim.keymap.set('v', '<leader>pf', function()
+    local text = vim.getVisualSelection()
+    builtin.find_files({
+        prompt_title = 'Find files (Respects .gitignore)',
+        default_text = text
+    })
+end, { desc = 'Telescope find files (Respects .gitignore)' })
 
 -- opens recent files and goes to normal mode so can scroll straight away with jk keys
 vim.keymap.set('n', '<leader>pr', function()
@@ -98,19 +112,21 @@ vim.keymap.set('n', '<leader>ds', function()
     })
 end, { desc = 'Telescope search in current dir' })
 
+vim.keymap.set('v', '<leader>ff', function()
+    builtin.current_buffer_fuzzy_find({
+        default_text = vim.getVisualSelection()
+    })
+end)
+
 vim.keymap.set('n', '<leader>df', function()
     local dir = vim.fn.expand("%:p:h")
     dir = dir:gsub("^oil://", "") -- strip Oil prefix
 
-    require("telescope.builtin").find_files({
+    builtin.find_files({
         cwd = dir,
         no_ignore = true,
     })
 end, { desc = 'Telescope find files in current dir' })
-
-vim.keymap.set('n', '<leader>pi', function()
-    builtin.lsp_implementations()
-end)
 
 -- resume last used picker
 vim.keymap.set("n", "<leader>tr", function ()
