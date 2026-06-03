@@ -27,6 +27,9 @@ if [ $? != 0 ]; then
     tmux new-window -t "$SESH" -n "ssh-prod"
     tmux send-keys -t "$SESH":ssh-prod "cd $PROJECT_DIR && ssh $SSH_PROD" C-m
 
+    tmux new-window -t "$SESH" -n "claude"
+    tmux send-keys -t "$SESH":claude "cd $PROJECT_DIR && claude" C-m
+
     tmux select-window -t "$SESH":cmd
 fi
 
