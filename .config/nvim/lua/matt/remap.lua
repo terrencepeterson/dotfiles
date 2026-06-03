@@ -275,3 +275,16 @@ end)
 vim.keymap.set("n", "<leader>ct", function()
     vim.cmd('tabonly')
 end)
+
+--[[
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    callback = function(ev)
+        local winid = vim.api.nvim_get_current_win()
+        if vim.wo[winid].previewwindow and vim.w[winid].oil_preview then
+            -- vim.notify(vim.inspect(ev))
+            -- we're in an oil-managed preview window
+            -- vim.w[winid].oil_entry_id  → the entry id
+            -- vim.w[winid].oil_source_win → the oil window
+        end
+    end,
+}) ]]

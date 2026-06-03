@@ -3,10 +3,12 @@ _G.GetWinBar = function()
     local relativePath = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
     local filename = vim.fn.expand("%:t")
     local cleanPath = relativePath:gsub("oil:///home/matt/projects/", "")
-    cleanPath = filename == cleanPath and "" or cleanPath -- stops file path from showing twice when editing files at project level
+    cleanPath = filename == cleanPath and "" or
+        cleanPath -- stops file path from showing twice when editing files at project level
     local extension = vim.fn.expand("%:e")
-    local devIcon, devIconHighlight = require'nvim-web-devicons'.get_icon(filename, extension, { default = true })
-    return string.format("    %%#%s#%s  %%#WinBarFileName#%s %%#WinBarPath#%s", devIconHighlight, devIcon, filename, cleanPath);
+    local devIcon, devIconHighlight = require 'nvim-web-devicons'.get_icon(filename, extension, { default = true })
+    return string.format("    %%#%s#%s  %%#WinBarFileName#%s %%#WinBarPath#%s", devIconHighlight, devIcon, filename,
+        cleanPath);
 end
 
 return {
@@ -22,7 +24,7 @@ return {
         vim.g.gruvbox_baby_keyword_style = "NONE"
 
         -- Load the colorscheme
-        vim.cmd[[colorscheme gruvbox-baby]]
+        vim.cmd [[colorscheme gruvbox-baby]]
 
         -- Set background colour
         -- vim.api.nvim_set_hl(0, "Normal", { bg = "#323232" })
@@ -31,11 +33,11 @@ return {
         -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
         -- set the current line number to bold yellow and the rest to the same as comment
-        vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#6E635D', bold=false })
-        vim.api.nvim_set_hl(0, 'LineNr', { fg='#EEBD35', bold=true })
-        vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#6E635D', bold=false })
+        vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#6E635D', bold = false })
+        vim.api.nvim_set_hl(0, 'LineNr', { fg = '#EEBD35', bold = true })
+        vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#6E635D', bold = false })
 
-        vim.api.nvim_set_hl(0, '@comment', { fg='#6E635D', bold=false })
+        vim.api.nvim_set_hl(0, '@comment', { fg = '#6E635D', bold = false })
 
         -- set tab indent line colour
         vim.api.nvim_set_hl(0, "NonText", { fg = "#3D3834" })
@@ -49,4 +51,3 @@ return {
         vim.api.nvim_set_hl(0, "WinBarPath", { italic = true, fg = "#8a7f78" })
     end
 }
-
