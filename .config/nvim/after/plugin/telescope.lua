@@ -41,16 +41,16 @@ end
 vim.keymap.set("n", "<leader>pd", OpenFolderWithOil, { desc = "Find folder and open in Oil" })
 
 function vim.getVisualSelection()
-	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg('v')
-	vim.fn.setreg('v', {})
+    vim.cmd('noau normal! "vy"')
+    local text = vim.fn.getreg('v')
+    vim.fn.setreg('v', {})
 
-	text = string.gsub(text, "\n", "")
-	if #text > 0 then
-		return text
-	else
-		return ''
-	end
+    text = string.gsub(text, "\n", "")
+    if #text > 0 then
+        return text
+    else
+        return ''
+    end
 end
 
 -- project ignored files
@@ -72,7 +72,7 @@ vim.keymap.set('v', '<leader>pif', function()
 end, { desc = 'Telescope find all files (With Selected Text)' })
 
 vim.keymap.set('n', '<leader>pf', function()
-    builtin.find_files({prompt_title = 'Find files (Respects .gitignore)' })
+    builtin.find_files({ prompt_title = 'Find files (Respects .gitignore)' })
 end, { desc = 'Telescope find files (Respects .gitignore)' })
 
 vim.keymap.set('v', '<leader>pf', function()
@@ -129,7 +129,7 @@ vim.keymap.set('n', '<leader>df', function()
 end, { desc = 'Telescope find files in current dir' })
 
 -- resume last used picker
-vim.keymap.set("n", "<leader>tr", function ()
+vim.keymap.set("n", "<leader>tr", function()
     builtin.resume({
         attach_mappings = function(_, map)
             -- Immediately switch to normal mode when the picker opens
@@ -163,11 +163,24 @@ telescope.setup({
                 ["<C-Down>"] = require('telescope.actions').cycle_history_next,
                 ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
                 ['<C-t>'] = select_one_or_multi,
+                ['<M-i>'] = function(prompt_bufnr)
+                    local prompt = action_state.get_current_picker(prompt_bufnr):_get_prompt()
+
+                    find_files_no_ignore = not find_files_no_ignore
+
+                    actions.close(prompt_bufnr)
+                    require('telescope.builtin').find_files({
+                        no_ignore = find_files_no_ignore,
+                        default_text = prompt,
+                        prompt_title = find_files_no_ignore and 'Find files (Respects .gitignore)' or 'Find all files'
+                    })
+                end,
             },
             n = {
                 ['<C-t>'] = select_one_or_multi,
                 ['q'] = actions.close
-            }
+            },
+
         }
     },
     extensions = {
