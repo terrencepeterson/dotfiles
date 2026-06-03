@@ -51,3 +51,19 @@ multiplier=3
 
 [mouse]
 hide_when_typing=true
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Escape"
+mode = "Vi"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Q"
+mode = "Vi"
+
+[[keyboard.bindings]]
+chars = "\x1b[59;5u"
+key = "Semicolon"
+mods = "Control"
+
