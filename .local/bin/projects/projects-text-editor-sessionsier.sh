@@ -9,6 +9,7 @@ declare -a paths=(
     "$HOME/.config/tmux"
     "$HOME/.config/alacritty"
     "$HOME/.config/kitty"
+    "$HOME/.config/starship"
 )
 
 NO_PROJECT_PATHS=$(printf "%s%s" $'\n' "$(implode paths $'\n')")

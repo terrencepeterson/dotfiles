@@ -1,0 +1,21 @@
+format = """
+$directory$git_branch
+$character"""
+add_newline = false
+
+[directory]
+style = "fg:#ECBC35"
+truncation_length = 5
+truncate_to_repo = true
+
+[git_branch]
+style = "fg:#FB4934"
+symbol = "\ue0a0 "
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "fg:#b8bb26"
+
+[character]
+success_symbol = "[❯](fg:#4A7C59)"
+error_symbol = "[❯](fg:#cc241d)"
