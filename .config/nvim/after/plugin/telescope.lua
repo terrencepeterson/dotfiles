@@ -141,6 +141,10 @@ vim.keymap.set("n", "<leader>tr", function()
     })
 end)
 
+vim.keymap.set({'n', 'x'}, '<leader>py', function()
+    telescope.extensions.yank_history.yank_history({})
+end, { desc = 'Open Yank History' })
+
 local grep_no_ignore = function(prompt_bufnr)
     lga_actions.quote_prompt({ postfix = ' --no-ignore -F ' })(prompt_bufnr)
 end
@@ -172,7 +176,7 @@ telescope.setup({
                     require('telescope.builtin').find_files({
                         no_ignore = find_files_no_ignore,
                         default_text = prompt,
-                        prompt_title = find_files_no_ignore and 'Find files (Respects .gitignore)' or 'Find all files'
+                        prompt_title = find_files_no_ignore and 'Find all files' or 'Find files (Respects .gitignore)'
                     })
                 end,
             },
@@ -235,3 +239,4 @@ telescope.setup({
 
 telescope.load_extension("live_grep_args")
 telescope.load_extension("smart_history")
+telescope.load_extension("yank_history")
