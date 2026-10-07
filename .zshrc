@@ -15,6 +15,7 @@ setopt HIST_REDUCE_BLANKS
 setopt AUTO_CD
 setopt INTERACTIVE_COMMENTS
 setopt NO_BEEP
+setopt CORRECT
 
 autoload -Uz colors
 colors
