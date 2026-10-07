@@ -10,6 +10,7 @@ if [ $? != 0 ]; then
 
     tmux send-keys -t "$SESH":ssh-local "cd $PROJECT_DIR" C-m
     tmux send-keys -t "$SESH":ssh-local "dc up -d" C-m
+    tmux send-keys -t "$SESH":ssh-local C-l
 
     tmux new-window -t "$SESH" -n "styles"
 
@@ -17,15 +18,18 @@ if [ $? != 0 ]; then
     tmux send-keys -t "$SESH":cmd "cd $PROJECT_DIR" C-m
     tmux send-keys -t "$SESH":cmd "site -e d $ALIAS" C-m
     tmux send-keys -t "$SESH":cmd "site -e d -a $ALIAS" C-m
-    tmux send-keys -t "$SESH":cmd "ff-harv" C-m
+    tmux send-keys -t "$SESH":cmd "ff-clock" C-m
     tmux send-keys -t "$SESH":cmd "ff-taskm" C-m
     tmux send-keys -t "$SESH":cmd "site -r $ALIAS" C-m
+    tmux send-keys -t "$SESH":cmd C-l
 
     tmux new-window -t "$SESH" -n "ssh-staging"
     tmux send-keys -t "$SESH":ssh-staging "cd $PROJECT_DIR && ssh $SSH_STAGING" C-m
+    tmux send-keys -t "$SESH":ssh-staging C-l
 
     tmux new-window -t "$SESH" -n "ssh-prod"
     tmux send-keys -t "$SESH":ssh-prod "cd $PROJECT_DIR && ssh $SSH_PROD" C-m
+    tmux send-keys -t "$SESH":ssh-pro C-l
 
     tmux new-window -t "$SESH" -n "claude"
     tmux send-keys -t "$SESH":claude "cd $PROJECT_DIR && claude" C-m
