@@ -2,6 +2,7 @@ vim.opt.mouse = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.report = 9999 -- stops vim messsaging saying "X fewer lines" when deleting chunks
+vim.opt.exrc = true
 
 -- for the search in buffer functionality
 vim.opt.ignorecase = true
